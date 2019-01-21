@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html>
+<head>
+
+	<title>INTRO TO TONE.JS</title>
+	<link rel="stylesheet" type="text/css" href="/pcd-delhi-workshop/style/main.css">
+	<link rel="stylesheet" type="text/css" href="/pcd-delhi-workshop/style/highlighter.css">
+	<script type="text/javascript" src="/pcd-delhi-workshop/scripts/prefixfree.min.js"></script>
+</head>
+<body>
+
+	<link rel="stylesheet" type="text/css" href="/pcd-delhi-workshop/style/topbar.css">
+<div id="topbar">
+	<div id="links">
+		<a href="/pcd-delhi-workshop/">home</a>
+		<span>|</span>
+		<a href="/pcd-delhi-workshop/syllabus">syllabus</a>
+	</div>
+	<div id="bar">
+		
+			<span></span>
+		
+			<span></span>
+		
+			<span></span>
+		
+			<span></span>
+		
+			<span></span>
+		
+			<span></span>
+		
+			<span></span>
+		
+			<span></span>
+		
+			<span></span>
+		
+			<span></span>
+		
+			<span></span>
+		
+			<span></span>
+		
+			<span></span>
+		
+			<span></span>
+		
+			<span></span>
+		
+			<span></span>
+		
+			<span></span>
+		
+			<span></span>
+		
+			<span></span>
+		
+			<span></span>
+		
+	</div>
+</div>
+
+	<h1>Intro to Tone.js</h1>
+
+	<p>Tone.js is a framework for creating interactive music in the browser. It provides advanced scheduling capabilities, synths and effects, and intuitive musical abstractions built on top of the Web Audio API.</p>
+
+<script async="" src="//jsfiddle.net/yotammann/8ozo3v9e/4/embed/js,result/"></script>
+
+<p><code class="highlighter-rouge">triggerAttackRelease</code> is a combination of two methods: <code class="highlighter-rouge">triggerAttack</code> when the amplitude is rising (for example from a ‘key down’ or ‘note on’ event), and <code class="highlighter-rouge">triggerRelease</code> is when the amplitude is going back to 0 (‘key up’ / ‘note off’).</p>
+
+<script async="" src="//jsfiddle.net/yotammann/jqnLgyja/23/embed/js,result/"></script>
+
+<h3 id="triggerattackrelease">triggerAttackRelease</h3>
+
+<p>The first argument to <code class="highlighter-rouge">triggerAttackRelease</code> is the frequency which can either be a number (like <code class="highlighter-rouge">440</code>) or as “pitch-octave” notation (like <code class="highlighter-rouge">"D#2"</code>).</p>
+
+<p>The second argument is the duration that the note is held. This value can either be in seconds, or as a <a href="https://github.com/Tonejs/Tone.js/wiki/Time">tempo-relative value</a>.</p>
+
+<p>The third (optional) argument is when the note should be scheduled to play. With no argument, the note plays immediately, but it can also be scheduled to play anytime in the future.</p>
+
+<h1 id="time">Time</h1>
+
+<p>Web Audio has advanced, sample accurate scheduling capabilities. The AudioContext time, which is the reference clock that Web Audio uses to schedule events, starts at 0 when the page (or iframe) loads and counts up in seconds.</p>
+
+<script async="" src="//jsfiddle.net/yotammann/z9v63k5b/11/embed/js,result/"></script>
+
+<p>The third argument of <code class="highlighter-rouge">triggerAttackRelease</code> is <em>when</em> along the AudioContext time the note should play. It can be used to schedule events in the future.</p>
+
+<script async="" src="//jsfiddle.net/yotammann/zxsthhmq/8/embed/js,result/"></script>
+
+<h3 id="tempo-relative">Tempo-Relative</h3>
+
+<p>Tone.js abstracts away the AudioContext time. Instead of defining all values in seconds, any method which takes time as an argument can accept a number or a string. For example <code class="highlighter-rouge">"4n"</code> is a quarter-note, <code class="highlighter-rouge">"8t"</code> is an eighth-note triplet, and <code class="highlighter-rouge">"1m"</code> is one measure. These values can even be composed into expressions.</p>
+
+<p>Read more about <a href="https://github.com/Tonejs/Tone.js/wiki/Time">Time encodings</a>.</p>
+
+<script async="" src="//jsfiddle.net/yotammann/meodck51/7/embed/js,result/"></script>
+
+<h3 id="toneplayer">Tone.Player</h3>
+
+<p><a href="http://tonejs.github.io/docs/#Player">Tone.Player</a> loads and schedules mp3, ogg or wav files. Unlike Tone.Synth which is ready as soon as the page loads, there is an additional step in using audio files, which is that you have to wait for them to load.</p>
+
+<script async="" src="//jsfiddle.net/yotammann/hzc9yzbn/14/embed/js,result/"></script>
+
+<p><a href="https://tonejs.github.io/docs/">Docs</a></p>
+
+
+	<link rel="stylesheet" type="text/css" href="/pcd-delhi-workshop/style/footer.css">
+<div id='footnotes'>
+
+</div>
+<div id='footer'>
+	©2017-2018 Yotam Mann <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/">CC BY-NC-SA</a>
+</div>
+
+	
+	<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+
+  ga('create', 'UA-90915308-1', 'auto');
+  ga('send', 'pageview');
+
+</script>
+
+	<script type="text/javascript">
+
+	// jsfiddle creates too many AudioContexts, 
+	// need to insure that the offscreen fiddles are closed
+	// to remove the unused AudioContexts
+
+	function isOffScreen (el) {
+		var rect = el.getBoundingClientRect();
+		return ((rect.left + rect.width) < 0 
+			|| (rect.top + rect.height) < 0
+			|| (rect.left > window.innerWidth || rect.top > window.innerHeight))
+	}
+
+	function reloadIframe(iframe){
+		var url = iframe.src
+		iframe.src = 'about:blank'
+		setTimeout(function() {
+			iframe.src = url
+		}, 10)
+	}
+
+	//test the active elements to see if they are out of the viewport
+	setInterval(function(){
+		document.querySelectorAll('.active-iframe').forEach(function(el){
+			if (isOffScreen(el)){
+				reloadIframe(el)
+				el.classList.remove('active-iframe')
+			}
+		})
+	}, 1000)
+
+	window.addEventListener('message', function(e){
+		// if the results tab was selected
+		var resultsTab = e.data[0] === 'resultsFrame'
+		var slug = e.data[1].slug
+		// get the iframe element using the slug
+		document.querySelectorAll('iframe').forEach(function(iframe){
+			if (iframe.src.indexOf(slug) !== -1){
+				// mark the iframe as active if it's on the results tab
+				if (resultsTab){
+					iframe.classList.add('active-iframe')
+				}
+			}
+		})
+	})
+</script>	
+</body>
+</html>

@@ -1,0 +1,256 @@
+<!DOCTYPE html>
+<html>
+<head>
+
+	<title>SYNTHESIS</title>
+	<link rel="stylesheet" type="text/css" href="/pcd-delhi-workshop/style/main.css">
+	<link rel="stylesheet" type="text/css" href="/pcd-delhi-workshop/style/highlighter.css">
+	<script type="text/javascript" src="/pcd-delhi-workshop/scripts/prefixfree.min.js"></script>
+</head>
+<body>
+
+	<link rel="stylesheet" type="text/css" href="/pcd-delhi-workshop/style/topbar.css">
+<div id="topbar">
+	<div id="links">
+		<a href="/pcd-delhi-workshop/">home</a>
+		<span>|</span>
+		<a href="/pcd-delhi-workshop/syllabus">syllabus</a>
+	</div>
+	<div id="bar">
+		
+			<span></span>
+		
+			<span></span>
+		
+			<span></span>
+		
+			<span></span>
+		
+			<span></span>
+		
+			<span></span>
+		
+			<span></span>
+		
+			<span></span>
+		
+			<span></span>
+		
+			<span></span>
+		
+			<span></span>
+		
+			<span></span>
+		
+			<span></span>
+		
+			<span></span>
+		
+			<span></span>
+		
+			<span></span>
+		
+			<span></span>
+		
+			<span></span>
+		
+			<span></span>
+		
+			<span></span>
+		
+	</div>
+</div>
+
+	<h1>Synthesis</h1>
+
+	<h2 id="analog-synthesis">ANALOG Synthesis</h2>
+
+<p>When translating sound waves into electrical signals, synthesizers use voltage. A typical range would be ±15V or ±5V.</p>
+
+<p>For demonstration, I will be using modular synths made with <a href="https://github.com/stretta/BEAP/wiki/BEAP-Modular---Overview-and-Install">BEAP</a> for Max/MSP. You can download all of the patches <a href="/pcd-delhi-workshop/assets/modular.zip">here</a></p>
+
+<h2 id="sources">Sources</h2>
+
+<p>Outputs signal, but no input other than control voltage.</p>
+
+<h3 id="oscillators">Oscillators</h3>
+
+<p>VCO (Voltage-Controlled Oscillator). Oscillation frequency is controlled by a voltage input.</p>
+
+<p>ARP 2600:</p>
+<ul>
+  <li>0v -&gt; 100hz</li>
+  <li>+4v -&gt; 1600hz</li>
+  <li>-4v -&gt; 6.25hz</li>
+</ul>
+
+<h4 id="sine">Sine</h4>
+
+<p>In 1822, Joseph Fourier, a French mathematician, discovered that sinusoidal waves can be used as simple building blocks to describe and approximate any periodic waveform.</p>
+
+<iframe width="560" height="315" src="https://www.youtube.com/embed/8KmVDxkia_w?start=0" frameborder="0" allowfullscreen="">
+</iframe>
+
+<h4 id="square">Square</h4>
+
+<p>Amplitude alternates at a steady frequency between fixed minimum and maximum values, with the same duration at minimum and maximum. The transition between minimum to maximum is instantaneous for an ideal square wave; this is not realizable in physical systems. Can be represented as an infinite summation of sinusoidal waves</p>
+
+<p><img src="https://upload.wikimedia.org/wikipedia/commons/b/bc/Fourier_series_for_square_wave.gif" alt="approximation with sine waves" /></p>
+
+<h4 id="triangle">Triangle</h4>
+
+<p>The triangle wave contains only odd harmonics, due to its odd symmetry. However, the higher harmonics roll off much faster than in a square wave.</p>
+
+<p><img src="https://upload.wikimedia.org/wikipedia/commons/b/bb/Synthesis_triangle.gif" alt="approximation with sine waves" /></p>
+
+<h4 id="sawtooth">Sawtooth</h4>
+
+<p>While a square wave is constructed from only odd harmonics, a sawtooth wave’s sound is harsh and clear and its spectrum contains both even and odd harmonics of the fundamental frequency. Because it contains all the integer harmonics, it is one of the best waveforms to use for subtractive synthesis of musical sounds, particularly bowed string instruments like violins and cellos.</p>
+
+<p><img src="https://upload.wikimedia.org/wikipedia/commons/d/d4/Synthesis_sawtooth.gif" alt="approximation with sine waves" /></p>
+
+<h4 id="control-voltage">Control Voltage</h4>
+
+<p>Signal which is used to control a parameter. i.e. Feeding an LFO into the frequency control of a VCO would create a frequency vibrato in which the frequency of the VCO warbles at the rate of the LFO.</p>
+
+<h3 id="lfo">LFO</h3>
+
+<p>Low Frequency Oscillator - slow cycles anywhere from a fortieth of a second to several minutes. Applied as control voltage since it’s not audible.</p>
+
+<h3 id="vca">VCA</h3>
+
+<p>Voltage Controlled Amplifier. Applying an LFO to VCA would make a tremolo.</p>
+
+<h3 id="noise">Noise</h3>
+
+<p><a href="https://en.wikipedia.org/wiki/Colors_of_noise">Multiple types of noise</a>: white, pink, brown, violet, blue…</p>
+
+<h3 id="envelope-generator">Envelope Generator</h3>
+
+<p>This is a control signal which rises and falls. Typically applied to the amplitude of a signal to create discrete “note” events.</p>
+
+<h4 id="adsr">ADSR</h4>
+
+<p>A very common synthesizer envelope which models musical instrument notes.</p>
+
+<ul>
+  <li>Attack time is the time taken for initial run-up of level from 0 to peak, beginning when the key is first pressed.</li>
+  <li>Decay time is the time taken for the subsequent run down from the attack level to the designated sustain level.</li>
+  <li>Sustain level is the level during the main sequence of the sound’s duration, until the key is released.</li>
+  <li>Release time is the time taken for the level to decay from the sustain level to zero after the key is released.</li>
+</ul>
+
+<h2 id="processors">Processors</h2>
+
+<h3 id="filters">Filters</h3>
+
+<p>VCF - Voltage Controlled Filter. Attenuates frequencies below (high-pass), above (low-pass) or both below and above (band-pass) a certain frequency</p>
+
+<h4 id="cutoff-frequency">Cutoff frequency</h4>
+
+<p>At what frequency the filter starts to attenuate signal.</p>
+
+<h4 id="rolloff">Rolloff</h4>
+
+<p>How quickly the frequency attenuates. Measured as drop in db over octaves.</p>
+
+<h4 id="types">Types</h4>
+
+<ul>
+  <li>Highpass - Only lets the high frequencies through.</li>
+  <li>Lowpass - Only lets the low frequencies through.</li>
+  <li>Bandpass - Only lets a narrow band of frequencies through.</li>
+  <li>Notch - Rejects a narrow frequency band.</li>
+  <li>High/Low shelf</li>
+  <li>Peak</li>
+</ul>
+
+<h3 id="effects">Effects</h3>
+
+<h4 id="delay">Delay</h4>
+
+<p>Delay is an audio effect which records an input signal to an audio storage medium, and then plays it back after a period of time. When this signal is fed back into itself (with some attenuation usually) you get a feedback delay</p>
+
+<h4 id="chorus">Chorus</h4>
+
+<p>Chorus is an effect created with a delay which delays and detunes the input audio to thicken the sound.</p>
+
+<h4 id="compressor">Compressor</h4>
+
+<p>Compressors narrow the dynamic range (difference between the loud parts and the soft parts) of an audio signal. Typical controls are threshold (above which point the attenuation will occur) and ratio (the amount of attenuation to apply to signal above the threshold value).</p>
+
+<h2 id="subtractive-and-additive-synthesis">Subtractive and Additive Synthesis</h2>
+
+<p>Additive Synthesis combines sound generating elements (such as oscillators).</p>
+
+<p>Subtractive Synthesis uses filters to subtract sound from a harmonically rich sound source.</p>
+
+
+	<link rel="stylesheet" type="text/css" href="/pcd-delhi-workshop/style/footer.css">
+<div id='footnotes'>
+
+</div>
+<div id='footer'>
+	©2017-2018 Yotam Mann <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/">CC BY-NC-SA</a>
+</div>
+
+	
+	<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+
+  ga('create', 'UA-90915308-1', 'auto');
+  ga('send', 'pageview');
+
+</script>
+
+	<script type="text/javascript">
+
+	// jsfiddle creates too many AudioContexts, 
+	// need to insure that the offscreen fiddles are closed
+	// to remove the unused AudioContexts
+
+	function isOffScreen (el) {
+		var rect = el.getBoundingClientRect();
+		return ((rect.left + rect.width) < 0 
+			|| (rect.top + rect.height) < 0
+			|| (rect.left > window.innerWidth || rect.top > window.innerHeight))
+	}
+
+	function reloadIframe(iframe){
+		var url = iframe.src
+		iframe.src = 'about:blank'
+		setTimeout(function() {
+			iframe.src = url
+		}, 10)
+	}
+
+	//test the active elements to see if they are out of the viewport
+	setInterval(function(){
+		document.querySelectorAll('.active-iframe').forEach(function(el){
+			if (isOffScreen(el)){
+				reloadIframe(el)
+				el.classList.remove('active-iframe')
+			}
+		})
+	}, 1000)
+
+	window.addEventListener('message', function(e){
+		// if the results tab was selected
+		var resultsTab = e.data[0] === 'resultsFrame'
+		var slug = e.data[1].slug
+		// get the iframe element using the slug
+		document.querySelectorAll('iframe').forEach(function(iframe){
+			if (iframe.src.indexOf(slug) !== -1){
+				// mark the iframe as active if it's on the results tab
+				if (resultsTab){
+					iframe.classList.add('active-iframe')
+				}
+			}
+		})
+	})
+</script>	
+</body>
+</html>

@@ -1,0 +1,210 @@
+<!DOCTYPE html>
+<html>
+<head>
+
+	<title>JSDOCS</title>
+	<link rel="stylesheet" type="text/css" href="/pcd-delhi-workshop/style/main.css">
+	<link rel="stylesheet" type="text/css" href="/pcd-delhi-workshop/style/highlighter.css">
+	<script type="text/javascript" src="/pcd-delhi-workshop/scripts/prefixfree.min.js"></script>
+</head>
+<body>
+
+	<link rel="stylesheet" type="text/css" href="/pcd-delhi-workshop/style/topbar.css">
+<div id="topbar">
+	<div id="links">
+		<a href="/pcd-delhi-workshop/">home</a>
+		<span>|</span>
+		<a href="/pcd-delhi-workshop/syllabus">syllabus</a>
+	</div>
+	<div id="bar">
+		
+			<span></span>
+		
+			<span></span>
+		
+			<span></span>
+		
+			<span></span>
+		
+			<span></span>
+		
+			<span></span>
+		
+			<span></span>
+		
+			<span></span>
+		
+			<span></span>
+		
+			<span></span>
+		
+			<span></span>
+		
+			<span></span>
+		
+			<span></span>
+		
+			<span></span>
+		
+			<span></span>
+		
+			<span></span>
+		
+			<span></span>
+		
+			<span></span>
+		
+			<span></span>
+		
+			<span></span>
+		
+	</div>
+</div>
+
+	<h1>JSDocs</h1>
+
+	<p><a href="http://usejsdoc.org/">JSDocs</a> is a way of annotating the source code such that documentation can automatically be generated from it. There are systems which will do additional safety checks using JSDoc notation such as <a href="https://developers.google.com/closure/compiler/">Google’s Closure Compiler</a>.</p>
+
+<p>Docs are always inside of comments which begin like this: <code class="highlighter-rouge">/**</code> and end with <code class="highlighter-rouge">*/</code>.</p>
+
+<p>If you use Sublime, I recommend installing <a href="https://github.com/spadgos/sublime-jsdocs">DocBlockr</a> which helps with writing JSDoc style code.</p>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>/**
+ * Here is a JSDoc comment block
+ */
+</code></pre></div></div>
+
+<h3 id="type">@type</h3>
+
+<p>To describe the type of an attribute, use the @type tag. The type can be any of the primitives such as <code class="highlighter-rouge">string</code>, <code class="highlighter-rouge">number</code>, <code class="highlighter-rouge">boolean</code>, etc, or the name of a class</p>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>/**
+ * @type {string} this is a description of this string
+ */
+var thisString = "thisstring";
+</code></pre></div></div>
+
+<h3 id="class">@class</h3>
+
+<p>The class tag should go above your function class definitions.</p>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>/**
+ * @class here you can give a short overview about your class
+ * 		  and then describe your constructor
+ */
+</code></pre></div></div>
+
+<h3 id="param">@param</h3>
+
+<p>The @param tag is for describing the arguments to a function or method.</p>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>/**
+ * @param {type} parameterName a short description of the parameter
+ */
+</code></pre></div></div>
+
+<p>Some additional syntax is that you can use an equal sign after the type to signify that the parameter is optional.</p>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>/**
+ * @param {type=} optionalParam this parameter is not necessary
+ */
+</code></pre></div></div>
+
+<h3 id="returns">@returns</h3>
+
+<p>Describe the return type of a function using @returns</p>
+
+<h3 id="private">@private</h3>
+
+<p>@private notifies the reader that this variable is for internal use only.</p>
+
+<h4 id="prototype-lookup">Prototype lookup</h4>
+
+<p>If you request an attribute/method with the dot operator (<code class="highlighter-rouge">myObject.method</code>), or brackets (<code class="highlighter-rouge">myObject["methodName"]</code>), the first place the runtime will look for that attribute is on the object’s <code class="highlighter-rouge">this</code>.</p>
+
+<p>So if you’re object looks like this:</p>
+
+<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">var</span> <span class="nx">FunkyObj</span> <span class="o">=</span> <span class="kd">function</span><span class="p">(){</span>
+	<span class="k">this</span><span class="p">.</span><span class="nx">attr</span> <span class="o">=</span> <span class="s2">"something"</span>
+<span class="p">};</span>
+
+<span class="nx">FunkyObj</span><span class="p">.</span><span class="nx">prototype</span><span class="p">.</span><span class="nx">funkyMethod</span> <span class="o">=</span> <span class="kd">function</span><span class="p">(){</span>
+	<span class="k">return</span> <span class="k">this</span><span class="p">.</span><span class="nx">attr</span><span class="p">;</span>
+<span class="p">}</span>
+
+<span class="kd">var</span> <span class="nx">funk</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">FunkyObj</span><span class="p">();</span>
+</code></pre></div></div>
+
+<p>Then accessing <code class="highlighter-rouge">funk.attr</code> will find that attribute on funk’s <code class="highlighter-rouge">this</code> object.</p>
+
+<p>If it does not find the attribute, it will start crawling up the prototype chain. First to the FunkyObj’s prototype, and then to the prototype of whatever class FunkyObj extends, until it finds something, or returns <code class="highlighter-rouge">undefined</code>.</p>
+
+
+	<link rel="stylesheet" type="text/css" href="/pcd-delhi-workshop/style/footer.css">
+<div id='footnotes'>
+
+</div>
+<div id='footer'>
+	©2017-2018 Yotam Mann <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/">CC BY-NC-SA</a>
+</div>
+
+	
+	<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+
+  ga('create', 'UA-90915308-1', 'auto');
+  ga('send', 'pageview');
+
+</script>
+
+	<script type="text/javascript">
+
+	// jsfiddle creates too many AudioContexts, 
+	// need to insure that the offscreen fiddles are closed
+	// to remove the unused AudioContexts
+
+	function isOffScreen (el) {
+		var rect = el.getBoundingClientRect();
+		return ((rect.left + rect.width) < 0 
+			|| (rect.top + rect.height) < 0
+			|| (rect.left > window.innerWidth || rect.top > window.innerHeight))
+	}
+
+	function reloadIframe(iframe){
+		var url = iframe.src
+		iframe.src = 'about:blank'
+		setTimeout(function() {
+			iframe.src = url
+		}, 10)
+	}
+
+	//test the active elements to see if they are out of the viewport
+	setInterval(function(){
+		document.querySelectorAll('.active-iframe').forEach(function(el){
+			if (isOffScreen(el)){
+				reloadIframe(el)
+				el.classList.remove('active-iframe')
+			}
+		})
+	}, 1000)
+
+	window.addEventListener('message', function(e){
+		// if the results tab was selected
+		var resultsTab = e.data[0] === 'resultsFrame'
+		var slug = e.data[1].slug
+		// get the iframe element using the slug
+		document.querySelectorAll('iframe').forEach(function(iframe){
+			if (iframe.src.indexOf(slug) !== -1){
+				// mark the iframe as active if it's on the results tab
+				if (resultsTab){
+					iframe.classList.add('active-iframe')
+				}
+			}
+		})
+	})
+</script>	
+</body>
+</html>

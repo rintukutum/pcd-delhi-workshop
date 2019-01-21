@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html>
+<head>
+
+	<title>DRAWING MUSIC</title>
+	<link rel="stylesheet" type="text/css" href="/pcd-delhi-workshop/style/main.css">
+	<link rel="stylesheet" type="text/css" href="/pcd-delhi-workshop/style/highlighter.css">
+	<script type="text/javascript" src="/pcd-delhi-workshop/scripts/prefixfree.min.js"></script>
+</head>
+<body>
+
+	<link rel="stylesheet" type="text/css" href="/pcd-delhi-workshop/style/topbar.css">
+<div id="topbar">
+	<div id="links">
+		<a href="/pcd-delhi-workshop/">home</a>
+		<span>|</span>
+		<a href="/pcd-delhi-workshop/syllabus">syllabus</a>
+	</div>
+	<div id="bar">
+		
+			<span></span>
+		
+			<span></span>
+		
+			<span></span>
+		
+			<span></span>
+		
+			<span></span>
+		
+			<span></span>
+		
+			<span></span>
+		
+			<span></span>
+		
+			<span></span>
+		
+			<span></span>
+		
+			<span></span>
+		
+			<span></span>
+		
+			<span></span>
+		
+			<span></span>
+		
+			<span></span>
+		
+			<span></span>
+		
+			<span></span>
+		
+			<span></span>
+		
+			<span></span>
+		
+			<span></span>
+		
+	</div>
+</div>
+
+	<h1>Drawing Music</h1>
+
+	<p><strong>What is an intuitive mapping between sound and visuals?</strong></p>
+
+<p>3 Short (6 minute) drawing excercises. Listen to these short samples and draw a visual representation of them. I will play each twice.</p>
+
+<p>Try representing structure:</p>
+
+<iframe width="560" height="315" src="https://www.youtube.com/embed/9X3j_76VBvI?start=0&amp;end=180" frameborder="0" allowfullscreen="">
+</iframe>
+
+<p>Try representing timbre:</p>
+
+<iframe width="560" height="315" src="https://www.youtube.com/embed/zIqS5_bh4nM?start=0&amp;end=180" frameborder="0" allowfullscreen="">
+</iframe>
+
+<p>Try representing space:</p>
+
+<iframe width="560" height="315" src="https://www.youtube.com/embed/xufJp8kHzOQ?start=0&amp;end=180" frameborder="0" allowfullscreen="">
+</iframe>
+
+
+	<link rel="stylesheet" type="text/css" href="/pcd-delhi-workshop/style/footer.css">
+<div id='footnotes'>
+
+</div>
+<div id='footer'>
+	©2017-2018 Yotam Mann <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/">CC BY-NC-SA</a>
+</div>
+
+	
+	<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+
+  ga('create', 'UA-90915308-1', 'auto');
+  ga('send', 'pageview');
+
+</script>
+
+	<script type="text/javascript">
+
+	// jsfiddle creates too many AudioContexts, 
+	// need to insure that the offscreen fiddles are closed
+	// to remove the unused AudioContexts
+
+	function isOffScreen (el) {
+		var rect = el.getBoundingClientRect();
+		return ((rect.left + rect.width) < 0 
+			|| (rect.top + rect.height) < 0
+			|| (rect.left > window.innerWidth || rect.top > window.innerHeight))
+	}
+
+	function reloadIframe(iframe){
+		var url = iframe.src
+		iframe.src = 'about:blank'
+		setTimeout(function() {
+			iframe.src = url
+		}, 10)
+	}
+
+	//test the active elements to see if they are out of the viewport
+	setInterval(function(){
+		document.querySelectorAll('.active-iframe').forEach(function(el){
+			if (isOffScreen(el)){
+				reloadIframe(el)
+				el.classList.remove('active-iframe')
+			}
+		})
+	}, 1000)
+
+	window.addEventListener('message', function(e){
+		// if the results tab was selected
+		var resultsTab = e.data[0] === 'resultsFrame'
+		var slug = e.data[1].slug
+		// get the iframe element using the slug
+		document.querySelectorAll('iframe').forEach(function(iframe){
+			if (iframe.src.indexOf(slug) !== -1){
+				// mark the iframe as active if it's on the results tab
+				if (resultsTab){
+					iframe.classList.add('active-iframe')
+				}
+			}
+		})
+	})
+</script>	
+</body>
+</html>

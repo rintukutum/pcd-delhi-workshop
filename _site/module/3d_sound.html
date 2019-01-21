@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html>
+<head>
+
+	<title>3D SOUND</title>
+	<link rel="stylesheet" type="text/css" href="/pcd-delhi-workshop/style/main.css">
+	<link rel="stylesheet" type="text/css" href="/pcd-delhi-workshop/style/highlighter.css">
+	<script type="text/javascript" src="/pcd-delhi-workshop/scripts/prefixfree.min.js"></script>
+</head>
+<body>
+
+	<link rel="stylesheet" type="text/css" href="/pcd-delhi-workshop/style/topbar.css">
+<div id="topbar">
+	<div id="links">
+		<a href="/pcd-delhi-workshop/">home</a>
+		<span>|</span>
+		<a href="/pcd-delhi-workshop/syllabus">syllabus</a>
+	</div>
+	<div id="bar">
+		
+			<span></span>
+		
+			<span></span>
+		
+			<span></span>
+		
+			<span></span>
+		
+			<span></span>
+		
+			<span></span>
+		
+			<span></span>
+		
+			<span></span>
+		
+			<span></span>
+		
+			<span></span>
+		
+			<span></span>
+		
+			<span></span>
+		
+			<span></span>
+		
+			<span></span>
+		
+			<span></span>
+		
+			<span></span>
+		
+			<span></span>
+		
+			<span></span>
+		
+			<span></span>
+		
+			<span></span>
+		
+	</div>
+</div>
+
+	<h1>3D Sound</h1>
+
+	<h2 id="spatial-perception-of-sound">Spatial Perception of Sound</h2>
+
+<p>Before we talk about how to spatialize sound in software, let’s start with how we perceive sound in space.</p>
+
+<p>The way we perceive the position of sound in space is mostly related to our physiology: your pinna, the size of your head, the density of your body, your height, etc. You have learned over your lifetime exactly how sound passes through you and now you can accurately understand sound in space.</p>
+
+<h2 id="encodingdecoding">Encoding/Decoding</h2>
+
+<p>The basics of spatialized sound representation comes down to an encoding/decoding problem. If you wanted to record and then recreate two sound sources left and right, then i could record two channels and then when i reproduce the sound, just place two speakers at the same place that i recorded them. I could do this for as many sources and speakers as i wanted.</p>
+
+<iframe width="560" height="315" src="https://www.youtube.com/embed/ncWFLzVrwU4?start=0" frameborder="0" allowfullscreen="">
+</iframe>
+
+<p>But as some point this becomes impractical, so we need another representation.</p>
+
+<h3 id="object-based">Object-based</h3>
+
+<p>Object-based representation is a when you a sound source combined with it’s position/rotation data. This is how game engines represent audio sources. Other attributes include cone size, rolloff factor etc. All of these are tweakable in game engines and not in any other recording method.</p>
+
+<h3 id="ambisonics">Ambisonics</h3>
+
+<p>Ambisonics is the ability to capture a recording including all of the space. This is an encoding.</p>
+
+<h4 id="recording-ambisonic-audio">Recording Ambisonic Audio</h4>
+
+<p>Ambisonic recording can be done with an b-format microphone which is composed of 3 or more capsules in an XYZ arrangement.</p>
+
+<h4 id="binaural-recording">Binaural recording</h4>
+
+<p>Binaural recording captures the sound <em>as it was heard through ears</em>. It does not allow you to move through the space or rotate your head, because the entire spatiality is baked into the recording.</p>
+
+<h2 id="3d-sound-in-tonejs">3D Sound in Tone.js</h2>
+
+<h3 id="tonepanner3d"><a href="http://tonejs.github.io/docs/#Panner3D">Tone.Panner3D</a></h3>
+
+<p>All audio you pass through this node will be spatialized. Does not necessarily need to be connected directly to the master output, but can be run through additional effects.</p>
+
+<h3 id="tonelistener"><a href="http://tonejs.github.io/docs/#Listener">Tone.Listener</a></h3>
+
+<p>There is only one listener. It models the listeners head and allows you to interact with the positioned audio.</p>
+
+<p>https://jsfiddle.net/yotammann/bkgsjyau/2/</p>
+
+<h3 id="toneconvolver"><a href="http://tonejs.github.io/docs/#Convolver">Tone.Convolver</a></h3>
+
+<p>Convolution is a powerful tool for mimicking realistic spaces. Reverb plays a large role in how we perceive a space.</p>
+
+<p><a href="https://github.com/GoogleChrome/web-audio-samples/tree/gh-pages/samples/audio/impulse-responses">Impulse Responses</a></p>
+
+<p>https://jsfiddle.net/yotammann/b0eg1ooz/2/</p>
+
+<h2 id="resources">Resources</h2>
+
+<ul>
+  <li><a href="https://github.com/jts3k/Authoring-Spatial-Media-for-Web">Authoring Spatial Media for Web</a></li>
+  <li><a href="http://www.reaper.fm/">Reaper</a></li>
+  <li><a href="http://www.ambisonictoolkit.net/">ATK Ambisonics Toolkit for Reaper</a></li>
+  <li><a href="http://superpowered.com/3d-spatialized-audio-virtual-reality">Superpowered Audio for VR</a></li>
+</ul>
+
+
+	<link rel="stylesheet" type="text/css" href="/pcd-delhi-workshop/style/footer.css">
+<div id='footnotes'>
+
+</div>
+<div id='footer'>
+	©2017-2018 Yotam Mann <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/">CC BY-NC-SA</a>
+</div>
+
+	
+	<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+
+  ga('create', 'UA-90915308-1', 'auto');
+  ga('send', 'pageview');
+
+</script>
+
+	<script type="text/javascript">
+
+	// jsfiddle creates too many AudioContexts, 
+	// need to insure that the offscreen fiddles are closed
+	// to remove the unused AudioContexts
+
+	function isOffScreen (el) {
+		var rect = el.getBoundingClientRect();
+		return ((rect.left + rect.width) < 0 
+			|| (rect.top + rect.height) < 0
+			|| (rect.left > window.innerWidth || rect.top > window.innerHeight))
+	}
+
+	function reloadIframe(iframe){
+		var url = iframe.src
+		iframe.src = 'about:blank'
+		setTimeout(function() {
+			iframe.src = url
+		}, 10)
+	}
+
+	//test the active elements to see if they are out of the viewport
+	setInterval(function(){
+		document.querySelectorAll('.active-iframe').forEach(function(el){
+			if (isOffScreen(el)){
+				reloadIframe(el)
+				el.classList.remove('active-iframe')
+			}
+		})
+	}, 1000)
+
+	window.addEventListener('message', function(e){
+		// if the results tab was selected
+		var resultsTab = e.data[0] === 'resultsFrame'
+		var slug = e.data[1].slug
+		// get the iframe element using the slug
+		document.querySelectorAll('iframe').forEach(function(iframe){
+			if (iframe.src.indexOf(slug) !== -1){
+				// mark the iframe as active if it's on the results tab
+				if (resultsTab){
+					iframe.classList.add('active-iframe')
+				}
+			}
+		})
+	})
+</script>	
+</body>
+</html>

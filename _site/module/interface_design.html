@@ -1,0 +1,254 @@
+<!DOCTYPE html>
+<html>
+<head>
+
+	<title>INTERFACE DESIGN</title>
+	<link rel="stylesheet" type="text/css" href="/pcd-delhi-workshop/style/main.css">
+	<link rel="stylesheet" type="text/css" href="/pcd-delhi-workshop/style/highlighter.css">
+	<script type="text/javascript" src="/pcd-delhi-workshop/scripts/prefixfree.min.js"></script>
+</head>
+<body>
+
+	<link rel="stylesheet" type="text/css" href="/pcd-delhi-workshop/style/topbar.css">
+<div id="topbar">
+	<div id="links">
+		<a href="/pcd-delhi-workshop/">home</a>
+		<span>|</span>
+		<a href="/pcd-delhi-workshop/syllabus">syllabus</a>
+	</div>
+	<div id="bar">
+		
+			<span></span>
+		
+			<span></span>
+		
+			<span></span>
+		
+			<span></span>
+		
+			<span></span>
+		
+			<span></span>
+		
+			<span></span>
+		
+			<span></span>
+		
+			<span></span>
+		
+			<span></span>
+		
+			<span></span>
+		
+			<span></span>
+		
+			<span></span>
+		
+			<span></span>
+		
+			<span></span>
+		
+			<span></span>
+		
+			<span></span>
+		
+			<span></span>
+		
+			<span></span>
+		
+			<span></span>
+		
+	</div>
+</div>
+
+	<h1>Interface Design</h1>
+
+	<p>In Ben Shneiderman’s book <a href="https://www.amazon.com/Designing-User-Interface-Human-Computer-Interaction/dp/0321537351"><em>Designing the User Interface: Strategies for Effective Human-Computer Interaction</em></a> (1987), he lays out a few guidelines for interface design.</p>
+
+<p>Let’s try to apply these to both APIs and musical interfaces:</p>
+
+<h2 id="strive-for-consistency">Strive for consistency</h2>
+
+<blockquote>
+  <p>Consistent sequences of actions should be required in similar situations; identical terminology should be used in prompts, menus, and help screens; and consistent color, layout, capitalization, fonts, and so on, should be employed throughout.</p>
+</blockquote>
+
+<h4 id="instrument">Instrument</h4>
+
+<p>It’s crucial that the listener/instrumentalist knows what the interface is going to do, otherwise the output will seem either random, or like the player is not in control.</p>
+
+<h4 id="api">API</h4>
+
+<p>Users of your software shouldn’t have to look at the documentation for every single method that you define. If you are consistent with naming, parameters and returned values, users will be able to expressively code with your API.</p>
+
+<h2 id="seek-universal-usability">Seek universal usability</h2>
+
+<blockquote>
+  <p>Recognize the needs of diverse users and design for plasticity, facilitating transformation of content. Novice to expert differences, age ranges, disabilities, international variations, and technological diversity each enrich the spectrum of requirements that guides design. Adding features for novices, such as explanations, and features for experts, such as shortcuts and faster pacing, enriches the interface design and improves perceived quality.</p>
+</blockquote>
+
+<h4 id="instrument-1">Instrument</h4>
+
+<p>Your interface should not be cumbersome, but instead try to make things that understandable and quick to use. Design for both novices and experts. Is it accessible to <em>everyone</em>?</p>
+
+<h4 id="api-1">API</h4>
+
+<p>Common functions will need to be typed out over and over again. Are they fast to write? Is there a faster way to do something? Is the language plain and understandable to non-domain-experts?</p>
+
+<h2 id="offer-informative-feedback">Offer informative feedback</h2>
+
+<blockquote>
+  <p>For every user action, there should be an interface feedback. For frequent and minor actions, the response can be modest, whereas for infrequent and major actions, the response should be more substantial.</p>
+</blockquote>
+
+<h4 id="instrument-2">Instrument</h4>
+
+<p>Audio feedback needs to be immediate. If the player is pressing something and not getting something in return, the interface will feel broken or the player will feel like they are not doing it right.</p>
+
+<h4 id="api-2">API</h4>
+
+<p>Methods should perform actions. Avoid too much configuration methods so that the response from your API is immediate and consistent.</p>
+
+<h2 id="design-dialogs-to-yield-closure">Design dialogs to yield closure</h2>
+
+<blockquote>
+  <p>Sequences of actions should be organized into groups with a beginning, middle, and end. Informative feedback at the completion of a group of actions gives users the satisfaction of accomplishment, a sense of relief, a signal to drop contingency plans from their minds, and an indicator to prepare for the next group of actions.</p>
+</blockquote>
+
+<h4 id="instrument-3">Instrument</h4>
+
+<p>Complex musical interfaces should provide an ending. They should <strong>stop</strong> when the users lift their hands from the instrument.</p>
+
+<h4 id="api-3">API</h4>
+
+<p>Make sure your API is designed around accomplishing something. The user of your API will feel closure if they are able to do what they need with your interfaces</p>
+
+<h2 id="prevent-errors">Prevent errors</h2>
+
+<blockquote>
+  <p>As much as possible, design the interface so that users cannot make serious errors</p>
+</blockquote>
+
+<h4 id="instrument-4">Instrument</h4>
+
+<p>If a button or UI element is reachable, assume it will be pressed. The exploration of the interface should feel <strong>safe</strong>.</p>
+
+<h4 id="api-4">API</h4>
+
+<p>Give default values to your methods, check that passed in values are in a safe range.</p>
+
+<h2 id="permit-easy-reversal-of-actions">Permit easy reversal of actions</h2>
+
+<blockquote>
+  <p>As much as possible, actions should be reversible. This feature relieves anxiety, since users know that errors can be undone, and encourages exploration of unfamiliar options.</p>
+</blockquote>
+
+<h4 id="instrument-5">Instrument</h4>
+
+<p>While the player is exploring and expressing with the interface, they should quickly be able to change directions if they don’t like what they hear.</p>
+
+<h4 id="api-5">API</h4>
+
+<p>try/catch blocks and clear error reporting allows users to handle issues and debug.</p>
+
+<h2 id="keep-users-in-control">Keep users in control</h2>
+
+<blockquote>
+  <p>Experienced users strongly desire the sense that they are in charge of the interface and that the interface responds to their actions.</p>
+</blockquote>
+
+<h4 id="instrument-6">Instrument</h4>
+
+<p>Again, the player should be in control with clear feedback. They should be able to stop the sound if they want.</p>
+
+<h4 id="api-6">API</h4>
+
+<p>Avoid background unnecessary background updates. What if the user wants something different or to handle a special case, but your software has a mind of its own.</p>
+
+<h2 id="reduce-short-term-memory-load">Reduce short-term memory load</h2>
+
+<blockquote>
+  <p>Humans’ limited capacity for information processing in short-term memory (the rule of thumb is that people can remember “seven plus or minus two chunks” of information) requires that designers avoid interfaces in which users must remember information from one display and then use that information on another display.</p>
+</blockquote>
+
+<h4 id="instrument-7">Instrument</h4>
+
+<p>Make and keep the state visible, if a sound is playing and it is behind a second screen, it is unclear how to change or stop it.</p>
+
+<h4 id="api-7">API</h4>
+
+<p>If possible, make APIs that are stateless, or don’t have too much state.</p>
+
+<h1 id="references">References</h1>
+
+<p>Design rules paraphrased from <a href="https://www.cs.umd.edu/users/ben/goldenrules.html">here</a></p>
+
+
+	<link rel="stylesheet" type="text/css" href="/pcd-delhi-workshop/style/footer.css">
+<div id='footnotes'>
+
+</div>
+<div id='footer'>
+	©2017-2018 Yotam Mann <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/">CC BY-NC-SA</a>
+</div>
+
+	
+	<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+
+  ga('create', 'UA-90915308-1', 'auto');
+  ga('send', 'pageview');
+
+</script>
+
+	<script type="text/javascript">
+
+	// jsfiddle creates too many AudioContexts, 
+	// need to insure that the offscreen fiddles are closed
+	// to remove the unused AudioContexts
+
+	function isOffScreen (el) {
+		var rect = el.getBoundingClientRect();
+		return ((rect.left + rect.width) < 0 
+			|| (rect.top + rect.height) < 0
+			|| (rect.left > window.innerWidth || rect.top > window.innerHeight))
+	}
+
+	function reloadIframe(iframe){
+		var url = iframe.src
+		iframe.src = 'about:blank'
+		setTimeout(function() {
+			iframe.src = url
+		}, 10)
+	}
+
+	//test the active elements to see if they are out of the viewport
+	setInterval(function(){
+		document.querySelectorAll('.active-iframe').forEach(function(el){
+			if (isOffScreen(el)){
+				reloadIframe(el)
+				el.classList.remove('active-iframe')
+			}
+		})
+	}, 1000)
+
+	window.addEventListener('message', function(e){
+		// if the results tab was selected
+		var resultsTab = e.data[0] === 'resultsFrame'
+		var slug = e.data[1].slug
+		// get the iframe element using the slug
+		document.querySelectorAll('iframe').forEach(function(iframe){
+			if (iframe.src.indexOf(slug) !== -1){
+				// mark the iframe as active if it's on the results tab
+				if (resultsTab){
+					iframe.classList.add('active-iframe')
+				}
+			}
+		})
+	})
+</script>	
+</body>
+</html>

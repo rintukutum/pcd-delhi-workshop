@@ -1,0 +1,242 @@
+<!DOCTYPE html>
+<html>
+<head>
+
+	<title></title>
+	<link rel="stylesheet" type="text/css" href="/pcd-delhi-workshop/style/main.css">
+	<link rel="stylesheet" type="text/css" href="/pcd-delhi-workshop/style/highlighter.css">
+	<script type="text/javascript" src="/pcd-delhi-workshop/scripts/prefixfree.min.js"></script>
+</head>
+<body>
+
+	<link rel="stylesheet" type="text/css" href="/pcd-delhi-workshop/style/topbar.css">
+<div id="topbar">
+	<div id="links">
+		<a href="/pcd-delhi-workshop/">home</a>
+		<span>|</span>
+		<a href="/pcd-delhi-workshop/syllabus">syllabus</a>
+	</div>
+	<div id="bar">
+		
+			<span></span>
+		
+			<span></span>
+		
+			<span></span>
+		
+			<span></span>
+		
+			<span></span>
+		
+			<span></span>
+		
+			<span></span>
+		
+			<span></span>
+		
+			<span></span>
+		
+			<span></span>
+		
+			<span></span>
+		
+			<span></span>
+		
+			<span></span>
+		
+			<span></span>
+		
+			<span></span>
+		
+			<span></span>
+		
+			<span></span>
+		
+			<span></span>
+		
+			<span></span>
+		
+			<span></span>
+		
+	</div>
+</div>
+
+	<h1></h1>
+
+	<ul>
+  <li>Randomness
+    <ul>
+      <li>Constrained Randomness</li>
+    </ul>
+  </li>
+  <li>Random Melody Walk
+    <ul>
+      <li>Interactive Melody Walk</li>
+    </ul>
+  </li>
+  <li>Markov Melodies
+    <ul>
+      <li>Interactive Markov Melodies</li>
+    </ul>
+  </li>
+  <li>Probabilistic drum loops</li>
+  <li>Interpolation</li>
+</ul>
+
+<h2 id="randomness">Randomness</h2>
+
+<h4 id="play-or-dont-with-some-probability">Play (or don’t) with some probability</h4>
+
+<p><a href="https://jsfiddle.net/yotammann/oLbot2ce/">Basic Probability</a></p>
+
+<p><a href="https://jsfiddle.net/yotammann/pxhkoejg/">Basic Probability from Click</a></p>
+
+<h2 id="random-melody-generator">Random Melody Generator</h2>
+
+<h4 id="generate-material-by-randomly-selecting-from-an-array-of-notes">Generate Material by randomly selecting from an array of notes.</h4>
+
+<ul>
+  <li>Make the synth</li>
+  <li>Make the array of notes</li>
+  <li>Schedule a series of random notes.</li>
+</ul>
+
+<p><a href="https://jsfiddle.net/yotammann/ythk1ttr/">Random Note Choice</a></p>
+
+<p><a href="https://jsfiddle.net/yotammann/4gad97n1/">Random Note Choice with Rests</a></p>
+
+<p>What kind of music does this make? What sort of musical decisions is there to make with this technique? Where can you take it from here?</p>
+
+<h4 id="lets-constrain-the-movement">Let’s Constrain the movement.</h4>
+
+<ul>
+  <li>Pick the next note based on the current note.
+    <ul>
+      <li>When a random value is above 0.5, move to the next note up</li>
+      <li>When below, move one note down</li>
+    </ul>
+  </li>
+  <li>Constrain the values to the length of our array</li>
+</ul>
+
+<p><a href="https://jsfiddle.net/yotammann/rto6hvwx/">Stepwise Note Choice</a></p>
+
+<p><a href="https://jsfiddle.net/yotammann/b1y94b8j/">Stepwise with wrapping</a></p>
+
+<h2 id="markov-chords">Markov Chords</h2>
+
+<p>Markov chains define states and probability of moving from one state to another. We’ll use chords as our states and define a way of moving from one state to another.</p>
+
+<p><img src="http://upload.wikimedia.org/wikipedia/commons/thumb/2/2b/Markovkate_01.svg/220px-Markovkate_01.svg.png" alt="Basic Markov Chain" /></p>
+
+<ul>
+  <li>First make the possible chord paths from one chord to the next.</li>
+  <li>Given there are only two choices between either state, flip a coin and choose one or the other.</li>
+  <li>Play those chords on a PolySynth</li>
+  <li>Maybe even add a bass part.</li>
+</ul>
+
+<p><a href="https://jsfiddle.net/yotammann/b5s9ept2/">Markov Chord Progression</a></p>
+
+<h2 id="probability-drums">Probability Drums</h2>
+
+<p>On every step of our sequencer, we will decide whether or not to play a drum part on that step given a probability table.</p>
+
+<ul>
+  <li>Make a drum kit.</li>
+  <li>Make some sliders with 16 steps.
+    <ul>
+      <li>zero them out</li>
+    </ul>
+  </li>
+  <li>On every step, generate a random number and compare it to the probability at that step</li>
+</ul>
+
+<p><a href="https://jsfiddle.net/yotammann/qy5wfkxh/">Chord Probability</a></p>
+
+<h4 id="interpolated-probabilities">Interpolated Probabilities</h4>
+
+<p>By adjusting the probability over time can add interesting progression to music.</p>
+
+<p><a href="https://jsfiddle.net/yotammann/Laaw23de/">Change Probability over time</a></p>
+
+<p><a href="https://jsfiddle.net/yotammann/ukuv49p9/">Interpolating Probability</a></p>
+
+<h2 id="references">REFERENCES</h2>
+
+<p><a href="http://algocomp.blogspot.com/">Algorithmic Composition</a>
+<a href="http://www.ibm.com/developerworks/java/library/j-camusic/">Cellular automata and music</a>
+<a href="http://shiffman.net/teaching/a2z/generate/#ngrams">Shiffman on Markov Chains</a>
+<a href="http://www.jstor.org/stable/3679442?seq=2#page_scan_tab_contents">A Panoply of Stochastic ‘Cannons’</a>
+<a href="http://www.amazon.com/Music-Probability-David-Temperley/dp/0262515199">Music and Probability</a>
+<a href="http://www.amazon.com/Algorithmic-Composer-Computer-Digital-Series/dp/0895794543">The Algorithmic Composer</a></p>
+
+
+	<link rel="stylesheet" type="text/css" href="/pcd-delhi-workshop/style/footer.css">
+<div id='footnotes'>
+
+</div>
+<div id='footer'>
+	©2017-2018 Yotam Mann <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/">CC BY-NC-SA</a>
+</div>
+
+	
+	<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+
+  ga('create', 'UA-90915308-1', 'auto');
+  ga('send', 'pageview');
+
+</script>
+
+	<script type="text/javascript">
+
+	// jsfiddle creates too many AudioContexts, 
+	// need to insure that the offscreen fiddles are closed
+	// to remove the unused AudioContexts
+
+	function isOffScreen (el) {
+		var rect = el.getBoundingClientRect();
+		return ((rect.left + rect.width) < 0 
+			|| (rect.top + rect.height) < 0
+			|| (rect.left > window.innerWidth || rect.top > window.innerHeight))
+	}
+
+	function reloadIframe(iframe){
+		var url = iframe.src
+		iframe.src = 'about:blank'
+		setTimeout(function() {
+			iframe.src = url
+		}, 10)
+	}
+
+	//test the active elements to see if they are out of the viewport
+	setInterval(function(){
+		document.querySelectorAll('.active-iframe').forEach(function(el){
+			if (isOffScreen(el)){
+				reloadIframe(el)
+				el.classList.remove('active-iframe')
+			}
+		})
+	}, 1000)
+
+	window.addEventListener('message', function(e){
+		// if the results tab was selected
+		var resultsTab = e.data[0] === 'resultsFrame'
+		var slug = e.data[1].slug
+		// get the iframe element using the slug
+		document.querySelectorAll('iframe').forEach(function(iframe){
+			if (iframe.src.indexOf(slug) !== -1){
+				// mark the iframe as active if it's on the results tab
+				if (resultsTab){
+					iframe.classList.add('active-iframe')
+				}
+			}
+		})
+	})
+</script>	
+</body>
+</html>

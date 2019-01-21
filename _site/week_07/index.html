@@ -1,0 +1,240 @@
+<!DOCTYPE html>
+<html>
+<head>
+
+	<title></title>
+	<link rel="stylesheet" type="text/css" href="/pcd-delhi-workshop/style/main.css">
+	<link rel="stylesheet" type="text/css" href="/pcd-delhi-workshop/style/highlighter.css">
+	<script type="text/javascript" src="/pcd-delhi-workshop/scripts/prefixfree.min.js"></script>
+</head>
+<body>
+
+	<link rel="stylesheet" type="text/css" href="/pcd-delhi-workshop/style/topbar.css">
+<div id="topbar">
+	<div id="links">
+		<a href="/pcd-delhi-workshop/">home</a>
+		<span>|</span>
+		<a href="/pcd-delhi-workshop/syllabus">syllabus</a>
+	</div>
+	<div id="bar">
+		
+			<span></span>
+		
+			<span></span>
+		
+			<span></span>
+		
+			<span></span>
+		
+			<span></span>
+		
+			<span></span>
+		
+			<span></span>
+		
+			<span></span>
+		
+			<span></span>
+		
+			<span></span>
+		
+			<span></span>
+		
+			<span></span>
+		
+			<span></span>
+		
+			<span></span>
+		
+			<span></span>
+		
+			<span></span>
+		
+			<span></span>
+		
+			<span></span>
+		
+			<span></span>
+		
+			<span></span>
+		
+	</div>
+</div>
+
+	<h1></h1>
+
+	<ul>
+  <li>Present Realizations</li>
+  <li>JS Context
+    <ul>
+      <li>this</li>
+      <li>bind</li>
+      <li>apply</li>
+      <li>call</li>
+    </ul>
+  </li>
+  <li>Inheritence</li>
+</ul>
+
+<h2 id="js-context">JS Context</h2>
+
+<h3 id="bind-call-apply"><code class="highlighter-rouge">bind</code>, <code class="highlighter-rouge">call</code>, <code class="highlighter-rouge">apply</code></h3>
+
+<p><code class="highlighter-rouge">bind</code>, <code class="highlighter-rouge">call</code>, and <code class="highlighter-rouge">apply</code> all fall under the category of context (s)witchery. These are used in situations where you want apply a different context.</p>
+
+<h4 id="bind"><code class="highlighter-rouge">bind</code></h4>
+
+<p><code class="highlighter-rouge">bind</code> comes up the most often. The problem that <code class="highlighter-rouge">bind</code> solves is that you want to create a callback (say using jquery on a mouse event). The callback, by its very nature, is going to be invoked in a different context than you made it in, so how do you make sure the value of <code class="highlighter-rouge">this</code> is the one you want it to be? <code class="highlighter-rouge">bind</code>.</p>
+
+<p><code class="highlighter-rouge">bind</code> takes a function and returns that function with the context bound to the function.</p>
+
+<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">var</span> <span class="nx">MyClass</span> <span class="o">=</span> <span class="kd">function</span><span class="p">(){</span>
+	<span class="c1">//listen for mouse events using jquery</span>
+	<span class="nx">$</span><span class="p">(</span><span class="s2">"#element"</span><span class="p">).</span><span class="nx">on</span><span class="p">(</span><span class="s2">"mousedown"</span><span class="p">,</span> <span class="k">this</span><span class="p">.</span><span class="nx">onmousedown</span><span class="p">.</span><span class="nx">bind</span><span class="p">(</span><span class="k">this</span><span class="p">));</span>
+<span class="p">}</span>
+
+<span class="nx">MyClass</span><span class="p">.</span><span class="nx">prototype</span><span class="p">.</span><span class="nx">onmousedown</span> <span class="o">=</span> <span class="kd">function</span><span class="p">(</span><span class="nx">event</span><span class="p">){</span>
+	<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s2">"i was invoked with the correct context"</span><span class="p">);</span>
+<span class="p">}</span>
+</code></pre></div></div>
+
+<p>bind is not just about setting the context, you can also preset the arguments which will be invoked with the function.</p>
+
+<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">function</span> <span class="nx">printToTheConsole</span><span class="p">(</span><span class="nx">stuff</span><span class="p">){</span>
+	<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">stuff</span><span class="p">);</span>
+<span class="p">}</span>
+
+<span class="kd">var</span> <span class="nx">alwaysPrintHi</span> <span class="o">=</span> <span class="nx">printToTheConsole</span><span class="p">.</span><span class="nx">bind</span><span class="p">(</span><span class="nb">window</span><span class="p">,</span> <span class="s2">"HELLO!"</span><span class="p">);</span>
+
+<span class="nx">alwaysPrintHi</span><span class="p">();</span> <span class="c1">//prints "HELLO!"</span>
+
+</code></pre></div></div>
+
+<h4 id="call"><code class="highlighter-rouge">call</code></h4>
+
+<p><code class="highlighter-rouge">call</code> is like bind in that it applies a context to a function, but <code class="highlighter-rouge">call</code> invokes that function right away instead of returning a function like <code class="highlighter-rouge">bind</code> does.</p>
+
+<p><code class="highlighter-rouge">call</code> is useful for “stealing” methods from other classes.</p>
+
+<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">//here is a basic class</span>
+<span class="kd">var</span> <span class="nx">AClass</span> <span class="o">=</span> <span class="kd">function</span><span class="p">(){</span>
+	<span class="k">this</span><span class="p">.</span><span class="nx">name</span> <span class="o">=</span> <span class="s2">"Henry"</span><span class="p">;</span>
+<span class="p">}</span>
+
+<span class="nx">AClass</span><span class="p">.</span><span class="nx">prototype</span><span class="p">.</span><span class="nx">greeting</span> <span class="o">=</span> <span class="kd">function</span><span class="p">(){</span>
+	<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s2">"hi my name is "</span><span class="o">+</span><span class="k">this</span><span class="p">.</span><span class="nx">name</span><span class="p">);</span>
+<span class="p">};</span>
+
+<span class="c1">//here is another class</span>
+<span class="kd">var</span> <span class="nx">AnotherClass</span> <span class="o">=</span> <span class="kd">function</span><span class="p">(){</span>
+	<span class="k">this</span><span class="p">.</span><span class="nx">name</span> <span class="o">=</span> <span class="s2">"Harriet"</span><span class="p">;</span>	
+<span class="p">}</span>
+
+<span class="kd">var</span> <span class="nx">anInstance</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">AClass</span><span class="p">();</span>
+<span class="kd">var</span> <span class="nx">anotherInstance</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">AnotherClass</span><span class="p">();</span>
+
+<span class="c1">//say the greeting</span>
+<span class="nx">anInstance</span><span class="p">.</span><span class="nx">greeting</span><span class="p">();</span> <span class="c1">//prints "hi my name is Henry"</span>
+<span class="c1">//use anInstance's greeting method with anotherInstances's data</span>
+<span class="nx">anInstance</span><span class="p">.</span><span class="nx">greeting</span><span class="p">.</span><span class="nx">call</span><span class="p">(</span><span class="nx">anotherInstance</span><span class="p">);</span> <span class="c1">//prints "hi my name is Harriet"</span>
+</code></pre></div></div>
+
+<h3 id="inheritance">Inheritance</h3>
+
+<p>The way to do inheritance in javascript is through the prototype. The concept is to have the prototype of the child also refer to the parent (that you want to inherit from). When a method or attribute is not available in the child, it will look up the prototype chain to the parent.</p>
+
+<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nx">Child</span><span class="p">.</span><span class="nx">prototype</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">Parent</span><span class="p">();.</span>
+<span class="c1">//and remember to set the constructor back to the Child</span>
+<span class="nx">Child</span><span class="p">.</span><span class="nx">prototype</span><span class="p">.</span><span class="kd">constructor</span> <span class="o">=</span> <span class="nx">Child</span><span class="p">;</span>
+</code></pre></div></div>
+
+<p>The problem is that the above example can have hidden side effects. What if the <code class="highlighter-rouge">Parent</code> constructor adds some elements to the DOM or console logs some things? Using this inheritance technique, those actions would happen prematurely, before you intend to actually construct the object.</p>
+
+<p>Here is an example of an extend method without side effects</p>
+
+<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">function</span> <span class="nx">extend</span><span class="p">(</span><span class="nx">Child</span><span class="p">,</span> <span class="nx">Parent</span><span class="p">){</span>
+	<span class="kd">function</span> <span class="nx">TempConstructor</span><span class="p">(){}</span>
+	<span class="nx">TempConstructor</span><span class="p">.</span><span class="nx">prototype</span> <span class="o">=</span> <span class="nx">Parent</span><span class="p">.</span><span class="nx">prototype</span><span class="p">;</span>
+	<span class="nx">Child</span><span class="p">.</span><span class="nx">prototype</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">TempConstructor</span><span class="p">();</span>
+	<span class="nx">Child</span><span class="p">.</span><span class="nx">prototype</span><span class="p">.</span><span class="kd">constructor</span> <span class="o">=</span> <span class="nx">Child</span><span class="p">;</span>
+<span class="p">}</span>
+</code></pre></div></div>
+
+<h2 id="resources">RESOURCES</h2>
+
+<ul>
+  <li><a href="http://ejohn.org/apps/learn/">Learning Advanced JavaScript - John Resig</a></li>
+  <li><a href="http://javascript.crockford.com/prototypal.html">Crockford - Prototypal Inheritance</a></li>
+  <li><a href="http://javascript.crockford.com/inheritance.html">Crockford - Classical Inheritance</a></li>
+  <li><a href="http://www.bolinfest.com/javascript/inheritance.php">Inheritance Patterns in JavaScript (Response to Crockford)</a></li>
+</ul>
+
+
+	<link rel="stylesheet" type="text/css" href="/pcd-delhi-workshop/style/footer.css">
+<div id='footnotes'>
+
+</div>
+<div id='footer'>
+	©2017-2018 Yotam Mann <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/">CC BY-NC-SA</a>
+</div>
+
+	
+	<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+
+  ga('create', 'UA-90915308-1', 'auto');
+  ga('send', 'pageview');
+
+</script>
+
+	<script type="text/javascript">
+
+	// jsfiddle creates too many AudioContexts, 
+	// need to insure that the offscreen fiddles are closed
+	// to remove the unused AudioContexts
+
+	function isOffScreen (el) {
+		var rect = el.getBoundingClientRect();
+		return ((rect.left + rect.width) < 0 
+			|| (rect.top + rect.height) < 0
+			|| (rect.left > window.innerWidth || rect.top > window.innerHeight))
+	}
+
+	function reloadIframe(iframe){
+		var url = iframe.src
+		iframe.src = 'about:blank'
+		setTimeout(function() {
+			iframe.src = url
+		}, 10)
+	}
+
+	//test the active elements to see if they are out of the viewport
+	setInterval(function(){
+		document.querySelectorAll('.active-iframe').forEach(function(el){
+			if (isOffScreen(el)){
+				reloadIframe(el)
+				el.classList.remove('active-iframe')
+			}
+		})
+	}, 1000)
+
+	window.addEventListener('message', function(e){
+		// if the results tab was selected
+		var resultsTab = e.data[0] === 'resultsFrame'
+		var slug = e.data[1].slug
+		// get the iframe element using the slug
+		document.querySelectorAll('iframe').forEach(function(iframe){
+			if (iframe.src.indexOf(slug) !== -1){
+				// mark the iframe as active if it's on the results tab
+				if (resultsTab){
+					iframe.classList.add('active-iframe')
+				}
+			}
+		})
+	})
+</script>	
+</body>
+</html>

@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html>
+<head>
+
+	<title>RANDOMIZATION</title>
+	<link rel="stylesheet" type="text/css" href="/pcd-delhi-workshop/style/main.css">
+	<link rel="stylesheet" type="text/css" href="/pcd-delhi-workshop/style/highlighter.css">
+	<script type="text/javascript" src="/pcd-delhi-workshop/scripts/prefixfree.min.js"></script>
+</head>
+<body>
+
+	<link rel="stylesheet" type="text/css" href="/pcd-delhi-workshop/style/topbar.css">
+<div id="topbar">
+	<div id="links">
+		<a href="/pcd-delhi-workshop/">home</a>
+		<span>|</span>
+		<a href="/pcd-delhi-workshop/syllabus">syllabus</a>
+	</div>
+	<div id="bar">
+		
+			<span></span>
+		
+			<span></span>
+		
+			<span></span>
+		
+			<span></span>
+		
+			<span></span>
+		
+			<span></span>
+		
+			<span></span>
+		
+			<span></span>
+		
+			<span></span>
+		
+			<span></span>
+		
+			<span></span>
+		
+			<span></span>
+		
+			<span></span>
+		
+			<span></span>
+		
+			<span></span>
+		
+			<span></span>
+		
+			<span></span>
+		
+			<span></span>
+		
+			<span></span>
+		
+			<span></span>
+		
+	</div>
+</div>
+
+	<h1>Randomization</h1>
+
+	<p>Play (or don’t) with some probability</p>
+
+<p><a href="https://jsfiddle.net/yotammann/3hvokbug/4/">Basic Probability</a></p>
+
+<p><a href="https://jsfiddle.net/yotammann/35ntamst/3/">MultiInstrument with Sliders</a></p>
+
+<h2 id="patterns">Patterns</h2>
+
+<p><a href="https://jsfiddle.net/yotammann/a1LL0Lz9/4/">up</a></p>
+
+<p><a href="https://jsfiddle.net/yotammann/a1LL0Lz9/5/">random</a></p>
+
+<p><a href="https://jsfiddle.net/yotammann/u9yce2gb/1/">random no repeat</a></p>
+
+<p>https://jsfiddle.net/yotammann/thq57e2r/2/</p>
+
+<p><a href="https://jsfiddle.net/yotammann/bjLvn2mx/">random walk with rests</a></p>
+
+<p><a href="https://jsfiddle.net/yotammann/a1LL0Lz9/11/">randomWalk</a></p>
+
+<p><a href="https://jsfiddle.net/yotammann/nmm57n2y/">tempo changes</a></p>
+
+<p><a href="https://jsfiddle.net/yotammann/3um9hjLw/1/">probability drums</a></p>
+
+<h2 id="markov">Markov</h2>
+
+<p>Markov chains define states and probability of moving from one state to another. We’ll use chords as our states and define a way of moving from one state to another.</p>
+
+<p><img src="http://upload.wikimedia.org/wikipedia/commons/thumb/2/2b/Markovkate_01.svg/220px-Markovkate_01.svg.png" alt="Basic Markov Chain" /></p>
+
+<p><a href="https://jsfiddle.net/yotammann/zjxL4jtr/2/">Markov Melody</a></p>
+
+<h2 id="probability-drums">Probability Drums</h2>
+
+<p>Create a probability pattern.</p>
+
+<p><a href="https://jsfiddle.net/yotammann/w16c4koL/">Interpolating Probability</a></p>
+
+<p><a href="https://jsfiddle.net/yotammann/gqpatybb/">Markov Chain</a></p>
+
+<h2 id="references">REFERENCES</h2>
+
+<ul>
+  <li><a href="http://algocomp.blogspot.com/">Algorithmic Composition</a></li>
+  <li><a href="http://www.ibm.com/developerworks/java/library/j-camusic/">Cellular automata and music</a></li>
+  <li><a href="http://shiffman.net/teaching/a2z/generate/#ngrams">Shiffman on Markov Chains</a></li>
+  <li><a href="http://www.jstor.org/stable/3679442?seq=2#page_scan_tab_contents">A Panoply of Stochastic ‘Cannons’</a></li>
+  <li><a href="http://www.amazon.com/Music-Probability-David-Temperley/dp/0262515199">Music and Probability</a></li>
+  <li><a href="http://www.amazon.com/Algorithmic-Composer-Computer-Digital-Series/dp/0895794543">The Algorithmic Composer</a></li>
+</ul>
+
+
+	<link rel="stylesheet" type="text/css" href="/pcd-delhi-workshop/style/footer.css">
+<div id='footnotes'>
+
+</div>
+<div id='footer'>
+	©2017-2018 Yotam Mann <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/">CC BY-NC-SA</a>
+</div>
+
+	
+	<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+
+  ga('create', 'UA-90915308-1', 'auto');
+  ga('send', 'pageview');
+
+</script>
+
+	<script type="text/javascript">
+
+	// jsfiddle creates too many AudioContexts, 
+	// need to insure that the offscreen fiddles are closed
+	// to remove the unused AudioContexts
+
+	function isOffScreen (el) {
+		var rect = el.getBoundingClientRect();
+		return ((rect.left + rect.width) < 0 
+			|| (rect.top + rect.height) < 0
+			|| (rect.left > window.innerWidth || rect.top > window.innerHeight))
+	}
+
+	function reloadIframe(iframe){
+		var url = iframe.src
+		iframe.src = 'about:blank'
+		setTimeout(function() {
+			iframe.src = url
+		}, 10)
+	}
+
+	//test the active elements to see if they are out of the viewport
+	setInterval(function(){
+		document.querySelectorAll('.active-iframe').forEach(function(el){
+			if (isOffScreen(el)){
+				reloadIframe(el)
+				el.classList.remove('active-iframe')
+			}
+		})
+	}, 1000)
+
+	window.addEventListener('message', function(e){
+		// if the results tab was selected
+		var resultsTab = e.data[0] === 'resultsFrame'
+		var slug = e.data[1].slug
+		// get the iframe element using the slug
+		document.querySelectorAll('iframe').forEach(function(iframe){
+			if (iframe.src.indexOf(slug) !== -1){
+				// mark the iframe as active if it's on the results tab
+				if (resultsTab){
+					iframe.classList.add('active-iframe')
+				}
+			}
+		})
+	})
+</script>	
+</body>
+</html>

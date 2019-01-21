@@ -1,0 +1,277 @@
+<!DOCTYPE html>
+<html>
+<head>
+
+	<title>MORE TONE.JS</title>
+	<link rel="stylesheet" type="text/css" href="/pcd-delhi-workshop/style/main.css">
+	<link rel="stylesheet" type="text/css" href="/pcd-delhi-workshop/style/highlighter.css">
+	<script type="text/javascript" src="/pcd-delhi-workshop/scripts/prefixfree.min.js"></script>
+</head>
+<body>
+
+	<link rel="stylesheet" type="text/css" href="/pcd-delhi-workshop/style/topbar.css">
+<div id="topbar">
+	<div id="links">
+		<a href="/pcd-delhi-workshop/">home</a>
+		<span>|</span>
+		<a href="/pcd-delhi-workshop/syllabus">syllabus</a>
+	</div>
+	<div id="bar">
+		
+			<span></span>
+		
+			<span></span>
+		
+			<span></span>
+		
+			<span></span>
+		
+			<span></span>
+		
+			<span></span>
+		
+			<span></span>
+		
+			<span></span>
+		
+			<span></span>
+		
+			<span></span>
+		
+			<span></span>
+		
+			<span></span>
+		
+			<span></span>
+		
+			<span></span>
+		
+			<span></span>
+		
+			<span></span>
+		
+			<span></span>
+		
+			<span></span>
+		
+			<span></span>
+		
+			<span></span>
+		
+	</div>
+</div>
+
+	<h1>More Tone.js</h1>
+
+	<h2 id="sources">Sources</h2>
+
+<p>Sources are AudioNodes which produce sound.</p>
+
+<p>These include:</p>
+
+<ul>
+  <li>Oscillator (sawtooth, square, pwm, pulse, sine, triangle, fm, am, fat)</li>
+  <li>Noise (white, pink, brown)</li>
+  <li><a href="https://jsfiddle.net/yotammann/nzz494yw/4/">Player</a></li>
+  <li>UserMedia</li>
+</ul>
+
+<h2 id="effects">Effects</h2>
+
+<p>Parallel connections https://jsfiddle.net/yotammann/5wgyv3w1/3/</p>
+
+<p>Series Connections https://jsfiddle.net/hroc1oo6/</p>
+
+<p>Effects modify the incoming signal.</p>
+
+<p>To add an effect to your audio signal, simply connect the effect in between your source and destination. Here is an example which routes a <a href="https://tonejs.github.io/docs/#Synth">Tone.Synth</a> through a <a href="https://tonejs.github.io/docs/#Distortion">Tone.Distortion</a>.</p>
+
+<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">//create an effect and connect it to the master output</span>
+<span class="kd">var</span> <span class="nx">dist</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">Tone</span><span class="p">.</span><span class="nx">Distortion</span><span class="p">().</span><span class="nx">toMaster</span><span class="p">();</span>
+<span class="c1">//create a synth and connect it to the effect</span>
+<span class="kd">var</span> <span class="nx">synth</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">Tone</span><span class="p">.</span><span class="nx">Synth</span><span class="p">().</span><span class="nx">connect</span><span class="p">(</span><span class="nx">dist</span><span class="p">);</span>
+<span class="c1">//and play a note to hear the distortion</span>
+<span class="nx">synth</span><span class="p">.</span><span class="nx">triggerAttackRelease</span><span class="p">(</span><span class="s2">"C4"</span><span class="p">,</span> <span class="s2">"8n"</span><span class="p">);</span>
+</code></pre></div></div>
+
+<h3 id="drywet">dry/wet</h3>
+
+<p>All effects have a dry/wet control called <code class="highlighter-rouge">wet</code> which controls how much of the effected (“wet”) signal is output compared to the uneffected (“dry”) signal. The default value for the effects is 100% wet.</p>
+
+<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">// 50/50 mix</span>
+<span class="nx">effect</span><span class="p">.</span><span class="nx">wet</span><span class="p">.</span><span class="nx">value</span> <span class="o">=</span> <span class="mf">0.5</span><span class="p">;</span>
+<span class="c1">//fade to 100% wet over 3 seconds.</span>
+<span class="nx">effect</span><span class="p">.</span><span class="nx">wet</span><span class="p">.</span><span class="nx">rampTo</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">3</span><span class="p">);</span>
+</code></pre></div></div>
+
+<h2 id="connections">Connections</h2>
+
+<p>https://jsfiddle.net/yotammann/5wgyv3w1/4/</p>
+
+<p><code class="highlighter-rouge">connect</code> is how we move audio data from one node to the next. It’s analogous to running a cable from the output of one node to the input of another. You will see the method used all over Tone.js and the Web Audio API, so it’s important to know what it does and how to use it.</p>
+
+<h3 id="connections-are-directional">Connections are directional</h3>
+
+<p>Signal flows from the output of the connect-er node to the input of the connect-ee. So if you had code that looks like this: <code class="highlighter-rouge">source.connect(sink)</code>. You can visualize this by drawing a line with an arrow from source to sink: <code class="highlighter-rouge">source-&gt;sink</code>.</p>
+
+<h3 id="connections-are-invisible">Connections are invisible</h3>
+
+<p>The connection is made in the underlying API and NOT “remembered” by Tone.js or the Web Audio API in any place. So you can’t later query “is A connected to B?”. If they are connected, there is no way to tell. It’s up to your application to remember it.</p>
+
+<h2 id="signals">Signals</h2>
+
+<p><a href="https://tonejs.github.io/docs/#Signal">Tone.Signal</a> plays an important role in Tone.js by allowing audio-rate control over many attributes. It is similar, but more flexible than the Web Audio API’s native <a href="http://webaudio.github.io/web-audio-api/#the-audioparam-interface">AudioParam</a> and allows sample-accurate control synchronization of a node’s attributes.</p>
+
+<p>https://jsfiddle.net/yotammann/5wgyv3w1/8/</p>
+
+<p><a href="https://jsfiddle.net/awcob5q8/">Modulating Signal-Rate Delay Time</a></p>
+
+<h2 id="setting-values">Setting values</h2>
+
+<p>Unlike other attributes, to get or set the value of a Tone.Signal, you must access it through the <code class="highlighter-rouge">.value</code>.</p>
+
+<p>For example, the frequency attribute of Tone.Oscillator is a Tone.Signal:</p>
+
+<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nx">oscillator</span><span class="p">.</span><span class="nx">frequency</span><span class="p">.</span><span class="nx">value</span><span class="p">;</span> <span class="c1">//returns the current frequency value</span>
+<span class="nx">oscillator</span><span class="p">.</span><span class="nx">frequency</span><span class="p">.</span><span class="nx">value</span> <span class="o">=</span> <span class="mi">100</span><span class="p">;</span> <span class="c1">//sets the value immediately</span>
+</code></pre></div></div>
+
+<p><code class="highlighter-rouge">.value</code> has to be used because Tone.Signal is not merely a number, but an audio-rate signal meaning it outputs a value on every sample and is also capable of sample-accurate automations.</p>
+
+<h2 id="scheduling-values">Scheduling values</h2>
+
+<p>A very important feature of Tone.Signal is that it sample-accurate. Scheduled changes will occur precisely when they are supposed to.</p>
+
+<p>Tone.Signal includes all of the same scheduling methods which the <code class="highlighter-rouge">AudioParam</code> does such as:</p>
+
+<ul>
+  <li><code class="highlighter-rouge">setValueAtTime</code> - to schedule a value change at a precise time.</li>
+  <li><code class="highlighter-rouge">linearRampToValueAtTime</code> - to ramp to a value starting from the previously scheduled value.</li>
+  <li><code class="highlighter-rouge">exponentialRampToValueAtTime</code> - same as the above, but with an exponential curve instead of a linear curve.</li>
+  <li><code class="highlighter-rouge">setTargetAtTime</code> - unlike the <code class="highlighter-rouge">RampValueAtTime</code> methods, in <code class="highlighter-rouge">setTargetAtTime</code>, the time attribute is when it should start ramping towards the value instead of arrive at the value. It takes a third parameter which is the time constant at which it will change.</li>
+  <li><code class="highlighter-rouge">setValueCurveAtTime</code> - sets an array of values which will be evenly invoked over the course of the duration.</li>
+  <li><code class="highlighter-rouge">cancelScheduledValues</code> - cancels all values after the specified time.</li>
+</ul>
+
+<p>Additionally, Tone provides methods for ramping and scheduling values at the current time. These simplify the above methods by canceling all values after the current time and setting an automation point at the current value.</p>
+
+<ul>
+  <li><code class="highlighter-rouge">linearRampToValue</code> - set a value and a ramp time and the signal will begin linearly ramping towards that value.</li>
+  <li><code class="highlighter-rouge">exponentialRampToValue</code> - same as above but exponential ramp.</li>
+  <li><code class="highlighter-rouge">rampTo</code> - same interface as the above methods, but will automatically decide to use linear or exponential based on the units of the signal.</li>
+</ul>
+
+<h2 id="transport">Transport</h2>
+
+<p>Instead of scheduling events along the AudioContext time, the Transport allows you to schedule events along a seekable/restartable timeline.</p>
+
+<p>This is done by scheduling a <strong>callback</strong> to be invoked right before the event is supposed to be scheduled and then using the time in that callback to schedule the event.</p>
+
+<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">var</span> <span class="nx">synth</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">Tone</span><span class="p">.</span><span class="nx">Synth</span><span class="p">().</span><span class="nx">toMaster</span><span class="p">()</span>
+<span class="c1">//schedule an event to happen 1 second after the transport is started</span>
+<span class="nx">Tone</span><span class="p">.</span><span class="nx">Transport</span><span class="p">.</span><span class="nx">schedule</span><span class="p">(</span><span class="kd">function</span><span class="p">(</span><span class="nx">time</span><span class="p">){</span>
+	<span class="c1">//use the time passed in to schedule the method</span>
+	<span class="nx">synth</span><span class="p">.</span><span class="nx">triggerAttackRelease</span><span class="p">(</span><span class="s2">"C4"</span><span class="p">,</span> <span class="s2">"8n"</span><span class="p">,</span> <span class="nx">time</span><span class="p">);</span>
+<span class="p">},</span> <span class="mi">1</span><span class="p">)</span>
+
+<span class="c1">//start the transport to hear the event</span>
+<span class="nx">Tone</span><span class="p">.</span><span class="nx">Transport</span><span class="p">.</span><span class="nx">start</span><span class="p">()</span>
+</code></pre></div></div>
+
+<p>https://jsfiddle.net/yotammann/swwvywvg/5/</p>
+
+<p>https://jsfiddle.net/yotammann/eprvL0nq/1/</p>
+
+<p>https://jsfiddle.net/yotammann/o3d076mz/1/</p>
+
+<h2 id="loop">Loop</h2>
+
+<p>Loop is an abstraction on the schedule method which allows you to create looped segments.</p>
+
+<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">//create a loop which is invoked every second</span>
+<span class="kd">var</span> <span class="nx">loop</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">Tone</span><span class="p">.</span><span class="nx">Loop</span><span class="p">(</span><span class="kd">function</span><span class="p">(</span><span class="nx">time</span><span class="p">){</span>
+	<span class="nx">synth</span><span class="p">.</span><span class="nx">triggerAttackRelease</span><span class="p">(</span><span class="s2">"C2"</span><span class="p">,</span> <span class="s2">"8n"</span><span class="p">,</span> <span class="nx">time</span><span class="p">)</span>
+<span class="p">},</span> <span class="mi">1</span><span class="p">)</span>
+
+<span class="c1">//start the loop two seconds after the transport is started</span>
+<span class="nx">loop</span><span class="p">.</span><span class="nx">start</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span>
+
+<span class="c1">//start the transport to invoke the loop</span>
+<span class="nx">Tone</span><span class="p">.</span><span class="nx">Transport</span><span class="p">.</span><span class="nx">start</span><span class="p">()</span>
+</code></pre></div></div>
+
+<h2 id="sequence">Sequence</h2>
+
+<p>https://jsfiddle.net/tseqv132/</p>
+
+<p>https://jsfiddle.net/tseqv132/2/</p>
+
+
+	<link rel="stylesheet" type="text/css" href="/pcd-delhi-workshop/style/footer.css">
+<div id='footnotes'>
+
+</div>
+<div id='footer'>
+	©2017-2018 Yotam Mann <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/">CC BY-NC-SA</a>
+</div>
+
+	
+	<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+
+  ga('create', 'UA-90915308-1', 'auto');
+  ga('send', 'pageview');
+
+</script>
+
+	<script type="text/javascript">
+
+	// jsfiddle creates too many AudioContexts, 
+	// need to insure that the offscreen fiddles are closed
+	// to remove the unused AudioContexts
+
+	function isOffScreen (el) {
+		var rect = el.getBoundingClientRect();
+		return ((rect.left + rect.width) < 0 
+			|| (rect.top + rect.height) < 0
+			|| (rect.left > window.innerWidth || rect.top > window.innerHeight))
+	}
+
+	function reloadIframe(iframe){
+		var url = iframe.src
+		iframe.src = 'about:blank'
+		setTimeout(function() {
+			iframe.src = url
+		}, 10)
+	}
+
+	//test the active elements to see if they are out of the viewport
+	setInterval(function(){
+		document.querySelectorAll('.active-iframe').forEach(function(el){
+			if (isOffScreen(el)){
+				reloadIframe(el)
+				el.classList.remove('active-iframe')
+			}
+		})
+	}, 1000)
+
+	window.addEventListener('message', function(e){
+		// if the results tab was selected
+		var resultsTab = e.data[0] === 'resultsFrame'
+		var slug = e.data[1].slug
+		// get the iframe element using the slug
+		document.querySelectorAll('iframe').forEach(function(iframe){
+			if (iframe.src.indexOf(slug) !== -1){
+				// mark the iframe as active if it's on the results tab
+				if (resultsTab){
+					iframe.classList.add('active-iframe')
+				}
+			}
+		})
+	})
+</script>	
+</body>
+</html>

@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html>
+<head>
+
+	<title>AUDIO TECH</title>
+	<link rel="stylesheet" type="text/css" href="/pcd-delhi-workshop/style/main.css">
+	<link rel="stylesheet" type="text/css" href="/pcd-delhi-workshop/style/highlighter.css">
+	<script type="text/javascript" src="/pcd-delhi-workshop/scripts/prefixfree.min.js"></script>
+</head>
+<body>
+
+	<link rel="stylesheet" type="text/css" href="/pcd-delhi-workshop/style/topbar.css">
+<div id="topbar">
+	<div id="links">
+		<a href="/pcd-delhi-workshop/">home</a>
+		<span>|</span>
+		<a href="/pcd-delhi-workshop/syllabus">syllabus</a>
+	</div>
+	<div id="bar">
+		
+			<span></span>
+		
+			<span></span>
+		
+			<span></span>
+		
+			<span></span>
+		
+			<span></span>
+		
+			<span></span>
+		
+			<span></span>
+		
+			<span></span>
+		
+			<span></span>
+		
+			<span></span>
+		
+			<span></span>
+		
+			<span></span>
+		
+			<span></span>
+		
+			<span></span>
+		
+			<span></span>
+		
+			<span></span>
+		
+			<span></span>
+		
+			<span></span>
+		
+			<span></span>
+		
+			<span></span>
+		
+	</div>
+</div>
+
+	<h1>Audio Tech</h1>
+
+	<p>Some of the basics of working with digial audio/amplitifcation/microphones and speakers.</p>
+
+<h2 id="ad--da">A/D &amp; D/A</h2>
+
+<h3 id="da">D/A</h3>
+
+<p>Convert the digital audio signals inside your computer to an analog signal.</p>
+
+<p><img src="http://upload.wikimedia.org/wikipedia/commons/1/15/Zeroorderhold.signal.svg" alt="DAC Wikipedia" /></p>
+
+<h3 id="ad">A/D</h3>
+
+<p>Takes analog signal from a microphone or instrument and samples it into a digital signal.</p>
+
+<h4 id="sampling-rate">Sampling Rate</h4>
+
+<p>Any sampling rate above CD Quality (44.1k) is sufficient for the majority of audio applications. Remember that bit depth plays a much bigger role in signal-to-noise ratio than the sampling rate. Very high sampling rates such as 96k or 192k are useful only in a handful of cases such as when you need to be able to slow the audio down significantly or for certain audio processing plugins.</p>
+
+<h3 id="audio-interface">Audio Interface</h3>
+
+<p>An audio interface (somtimes called a Sound Card) is an important piece of equipment to understand for doing audio I/O for a concert, installation or instruments. The job of an audio interface is ADC and DAC.</p>
+
+<p>A typically audio interface will have at least 2 outputs. Many have up up to 16 or more. These are the outputs which you connect to your speakers</p>
+
+<h3 id="speakers">Speakers</h3>
+
+<p>Speakers come in a range of sizes and types. The primary metric of speakers is their cone-size which is proportional to the frequency they can produce. Larger cones can produce lower frequencies.</p>
+
+<h4 id="active">Active</h4>
+
+<p>Active speakers are very easy to work with. They are self powered (i.e. have an “on” switch in the back) and have their own volume know typically.</p>
+
+<h4 id="passive">Passive</h4>
+
+<p>Passive speakers have no built in amplifier and require a powered amplifier for them to make any sound. They are much less expensive than Active speakers.</p>
+
+<h3 id="microphone">Microphone</h3>
+
+<p>Microphones are defined by their transducer type (dynamic, condenser) and their directional pattern (cardioid, omni, shotgun).</p>
+
+<p>A dynamic microphone will only pick up signal which is very close to it. This is useful for loud and live situations to avoid feedback.</p>
+
+<p>If working with microphones and amplification, it’s important to match the type and directional pattern of the microphones to the placement and gain of the speakers.</p>
+
+
+	<link rel="stylesheet" type="text/css" href="/pcd-delhi-workshop/style/footer.css">
+<div id='footnotes'>
+
+</div>
+<div id='footer'>
+	©2017-2018 Yotam Mann <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/">CC BY-NC-SA</a>
+</div>
+
+	
+	<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+
+  ga('create', 'UA-90915308-1', 'auto');
+  ga('send', 'pageview');
+
+</script>
+
+	<script type="text/javascript">
+
+	// jsfiddle creates too many AudioContexts, 
+	// need to insure that the offscreen fiddles are closed
+	// to remove the unused AudioContexts
+
+	function isOffScreen (el) {
+		var rect = el.getBoundingClientRect();
+		return ((rect.left + rect.width) < 0 
+			|| (rect.top + rect.height) < 0
+			|| (rect.left > window.innerWidth || rect.top > window.innerHeight))
+	}
+
+	function reloadIframe(iframe){
+		var url = iframe.src
+		iframe.src = 'about:blank'
+		setTimeout(function() {
+			iframe.src = url
+		}, 10)
+	}
+
+	//test the active elements to see if they are out of the viewport
+	setInterval(function(){
+		document.querySelectorAll('.active-iframe').forEach(function(el){
+			if (isOffScreen(el)){
+				reloadIframe(el)
+				el.classList.remove('active-iframe')
+			}
+		})
+	}, 1000)
+
+	window.addEventListener('message', function(e){
+		// if the results tab was selected
+		var resultsTab = e.data[0] === 'resultsFrame'
+		var slug = e.data[1].slug
+		// get the iframe element using the slug
+		document.querySelectorAll('iframe').forEach(function(iframe){
+			if (iframe.src.indexOf(slug) !== -1){
+				// mark the iframe as active if it's on the results tab
+				if (resultsTab){
+					iframe.classList.add('active-iframe')
+				}
+			}
+		})
+	})
+</script>	
+</body>
+</html>
