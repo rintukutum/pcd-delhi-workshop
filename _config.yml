@@ -13,16 +13,6 @@ collections:
     modules:
       output: true
       permalink: module/:path
-    references:
-      output: false
-      permalink: ref/:path
-    assignments:
-      output: true
-      layout: assignment
-      permalink: assignment/:path
-    activities:
-      output: true
-      permalink: activity/:path
     pages:
       output: true
       permalink: :path
