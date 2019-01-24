@@ -16,7 +16,7 @@ SUNDAY, 27/01/2019
 
 - Organizers show [60 min]
   - [Natasha Singh](https://www.timeblur.io/#about-us) : Computational ethnography
-  - [Dr Mitali Mukerji](https://twitter.com/mukerjim) & [Rintu Kutum](https://twitter.com/rintukutum) : Interactive Visualization of Largescale Genomics datasets for P4 Medicine
+  - [Dr Mitali Mukerji](https://en.wikipedia.org/wiki/Mitali_Mukerji) & [Rintu Kutum](https://twitter.com/rintukutum) : Interactive Visualization of Largescale Genomics datasets for P4 Medicine
   - Samarth: Generative art
 
 - Beginner-friendly workshop I [120 mins]
@@ -36,17 +36,17 @@ Lunch break [60 min]
 [Syllabus]({{ site.baseurl }}/syllabus)
 
 ## ORGANIZERS
-[Natasha Singh](https://twitter.com/n_tashing), Co-founder & Director [timeblur Studio](https://www.timeblur.io/)
+[Natasha Singh](https://twitter.com/n_tashing), Co-founder & Director [timeblur Studio](https://twitter.com/timeblurIndia)
 
-[Mike](https://twitter.com/MikeCj184), Co-founder & Developer [timeblur Studio](https://www.timeblur.io/)
+[Mike](https://twitter.com/MikeCj184), Co-founder & Developer [timeblur Studio](https://twitter.com/timeblurIndia)
 
 [Rintu Kutum](https://twitter.com/rintukutum), PhD scholar, Computational Biology
 
-[Sandip Baidya](https://twitter.com/rintukutum), BTech, IIIT-Delhi
+[Sandip Baidya](https://twitter.com/grassDipper), BTech, GB Pant Engineering College
 
 [Kadambini](https://twitter.com/rintukutum), Artist & Designer
 
-[Samarth Gulati](https://twitter.com/rintukutum), UI Designer & Developer
+[Samarth Gulati](https://twitter.com/samarthishere), UI Designer & Developer
 
 ## Inspired and adapted
 Interactive Music by [Yotam Mann](https://github.com/tambien/InteractiveMusic)
