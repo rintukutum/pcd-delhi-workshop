@@ -33,7 +33,7 @@ Lunch break [60 min]
 [Mike](https://twitter.com/MikeCj184), Co-founder & Developer [timeblur Studio](https://twitter.com/timeblurIndia)  
 [Rintu Kutum](https://twitter.com/rintukutum), PhD scholar in Computational Biology, [CSIR-IGIB](https://twitter.com/IGIB_DEL_110007)  
 [Sandip Baidya](https://twitter.com/grassDipper), BTech, [GB Pant Engineering College](http://www.gbpec.edu.in/)  
-[Kadambini](https://www.instagram.com/dotssandpoint/), Art Director
+[Kadambini](https://www.instagram.com/dotssandpoint/), Art Director  
 [Samarth Gulati](https://twitter.com/samarthishere), UI Designer & Developer  
 
 ## Inspired and adapted  
